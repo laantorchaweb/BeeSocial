@@ -1,70 +1,39 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/bootstrap.css' />
-    <link rel='stylesheet' href='/css/bootstrap-responsive.css' />
-    <link rel='stylesheet' href='/css/main.css' />
-  </head>
-  <body>
+<% include header %>
 
-    <div class="wrapper">
-      <h1>Register</h1>
+  <h1>Register</h1>
 
-      <form method="post" action="/register">
-      <fieldset>
-      <legend>Your Name</legend>
-        <label>
-          First:
-          <input type="text" name="firstName" />
-        </label>
+  <form method="post" action="/register">
+  <fieldset>
+  <legend>Your Name</legend>
+    <label>First:</label>
+    <input type="text" name="firstName" />
+    <label>Last:</label>
+      <input type="text" name="lastName" />
+  </fieldset>
 
-        <label>
-          Last:
-          <input type="text" name="lastName" />
-        </label>
-      </fieldset>
+  <fieldset>
+    <legend>Email Address</legend>
 
-      <fieldset>
-        <legend>Email Address</legend>
+    <label>Email:</label>
+    <input type="text" name="email" />
 
-        <label>
-          Email:
-          <input type="text" name="email" />
-        </label>
+    <label>Email (confirm):</label>
+    <input type="text" name="cemail" />
+  </fieldset>
 
-        <br />
+  <fieldset>
+    <legend>Password</legend>
 
-        <label>
-          Email (confirm):
-          <input type="text" name="cemail" />
-        </label>
-      </fieldset>
+    <label>Password:</label>
+    <input type="password" name="password" />
 
-      <fieldset>
-        <legend>Password</legend>
+    <label>Password (confirm):</label>
+      <input type="password" name="cpassword" />
+  </fieldset>
 
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label>
+  <p>
+    <input type="submit" value="Register Now" class="btn btn-primary"/>
+  </p>
+  </form>
 
-        <br />
-
-        <label>
-          Password (confirm):
-          <input type="password" name="cpassword" />
-        </label>
-      </fieldset>
-
-      <p>
-        <input type="submit" value="Register Now"/>
-      </p>
-      </form>
-    </div>
-
-    <script src="/js/libs/jquery-1.9.1.js"></script>
-    <script src="/js/libs/underscore.js"></script>
-    <script src="/js/main.js"></script>
-  </body>
-</html>
+<% include footer %>

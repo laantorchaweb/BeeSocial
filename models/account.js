@@ -2,7 +2,7 @@ var crypto = require('crypto');
 
 module.exports = function(mongoose) {
 
-  var AccountSchema = new mongoose.Schema({
+  var userSchema = new mongoose.Schema({
       email:     { type: String, unique: true },
       password:  { type: String },
       name: {
@@ -18,7 +18,7 @@ module.exports = function(mongoose) {
       biography: { type: String }
   });
 
-  var Account = mongoose.model('Account', AccountSchema);
+  var Account = mongoose.model('Account', userSchema);
 
   var registerCallback = function(err) {
     if (err) {

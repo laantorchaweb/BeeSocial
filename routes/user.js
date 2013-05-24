@@ -10,7 +10,7 @@ exports.home = function(req, res) {
   } else {
     res.send(401);
   }
-  console.log(Account)
+
 }
 
 

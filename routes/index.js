@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Account = require('../models/account')(mongoose);
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/BeeSocial');
 
 var db = mongoose.connection;
 
