@@ -32,7 +32,8 @@ module.exports = function(mongoose) {
     shaSum.update(password);
 
     Account.findOne({email:email,password:shaSum.digest('hex')},function(err,doc){
-      callback(null!=doc);
+      console.log('doc ', doc)
+      callback(doc);
     });
 
   };
@@ -55,9 +56,16 @@ module.exports = function(mongoose) {
     console.log('Save command was sent');
   };
 
+  var findById = function(id, callback) {
+    Account.findOne({_id:id}, function(err,doc) {
+      callback(doc);
+    });
+  };
+
   return {
     login: login,
     register: register,
+    findById: findById,
     Account: Account
   }
 }

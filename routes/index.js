@@ -10,10 +10,10 @@ exports.index = function(req, res){
 };
 
 exports.register = function(req, res) {
-    var firstName = req.param('firstName', '');
-    var lastName = req.param('lastName', '');
-    var email = req.param('email', null);
-    var password = req.param('password', null);
+    var firstName = req.param('firstName', ''),
+        lastName  = req.param('lastName', ''),
+        email     = req.param('email', null),
+        password  = req.param('password', null);
 
     if ( null == email || email.length < 1 || null == password || password.length < 1 ) {
       res.send(400);
@@ -33,14 +33,32 @@ exports.login = function(req, res){
     return;
   }
 
-  Account.login(email, password, function(success) {
-    if ( !success ) {
+  Account.login(email, password, function(doc) {
+    if ( !doc ) {
       res.send(401);
       return;
     }
     console.log('login was successful');
-    req.session.loggedIn = true;
-    res.redirect('/home');
+    req.session.loggedIn  = true;
+    req.session.accountId = doc._id;
+    res.redirect('/users/' + req.session.accountId);
   });
 
 };
+
+exports.home = function(req, res) {
+  var id = req.params.id;
+
+  if ( req.session.loggedIn ) {
+    Account.findById(id, function(doc) {
+        console.log('dochome', doc)
+        res.render('home', {
+          title: 'BeeSocial',
+          user: doc
+        });
+    })
+  } else {
+    res.send(401);
+  }
+
+}

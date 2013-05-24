@@ -1,6 +1,18 @@
 <% include header %>
 
-    <h2>this is the home</h2>
+    <h2>Welcome <%= user.name.first %> <%= user.name.last %></h2>
+    <p><%= user.email %></p>
+    <form action="/content" method="post">
+        <fieldset>
+            <legend>Share stuff: </legend>
+            <label for="content">Write your stuff: </label>
+            <textarea name="content" id="content" rows="5"></textarea>
+        </fieldset>
+
+        <fieldset>
+            <input type="submit" value="post!" class="btn btn-primary">
+        </fieldset>
+    </form>
 
 <% include footer %>
 
