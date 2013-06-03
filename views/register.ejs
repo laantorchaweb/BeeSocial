@@ -1,39 +1,41 @@
 <% include header %>
 
-  <h1>Register</h1>
+<div class="container hero-unit">
 
-  <form method="post" action="/register">
-  <fieldset>
-  <legend>Your Name</legend>
-    <label>First:</label>
-    <input type="text" name="firstName" />
-    <label>Last:</label>
-      <input type="text" name="lastName" />
-  </fieldset>
+  <form method="post" action="/register" class="form-skin">
+    <fieldset>
+      <legend>Your Name</legend>
 
-  <fieldset>
-    <legend>Email Address</legend>
+      <label>First:</label>
+      <input type="text" name="firstName" />
+      <label>Last:</label>
+        <input type="text" name="lastName" />
+    </fieldset>
 
-    <label>Email:</label>
-    <input type="text" name="email" />
+    <fieldset>
+      <legend>Email Address</legend>
 
-    <label>Email (confirm):</label>
-    <input type="text" name="cemail" />
-  </fieldset>
+      <label>Email:</label>
+      <input type="text" name="email" />
 
-  <fieldset>
-    <legend>Password</legend>
+      <label>Email (confirm):</label>
+      <input type="text" name="cemail" />
+    </fieldset>
 
-    <label>Password:</label>
-    <input type="password" name="password" />
+    <fieldset>
+      <legend>Password</legend>
 
-    <label>Password (confirm):</label>
-      <input type="password" name="cpassword" />
-  </fieldset>
+      <label>Password:</label>
+      <input type="password" name="password" />
 
-  <p>
-    <input type="submit" value="Register Now" class="btn btn-primary"/>
-  </p>
+      <label>Password (confirm):</label>
+        <input type="password" name="cpassword" />
+    </fieldset>
+
+    <p>
+      <input type="submit" value="Register Now" class="btn btn-flat btn-blue no-radius"/>
+    </p>
   </form>
+</div>
 
 <% include footer %>

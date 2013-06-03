@@ -1,18 +1,63 @@
 <% include header %>
 
-    <h2>Welcome <%= user.name.first %> <%= user.name.last %></h2>
-    <p><%= user.email %></p>
-    <form action="/content" method="post">
-        <fieldset>
-            <legend>Share stuff: </legend>
-            <label for="content">Write your stuff: </label>
-            <textarea name="content" id="content" rows="5"></textarea>
-        </fieldset>
+<% include sidebar-nav %>
 
-        <fieldset>
-            <input type="submit" value="post!" class="btn btn-primary">
-        </fieldset>
-    </form>
+<section class="content">
+    <header class="content-header">
+        <h1 class="light no-margin"><%= user.name.first %> <%= user.name.last %></h1>
+    </header>
+<section class="bordered">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h3 class="section-header light aligncenter">Daily Meeting</h3>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span10 offset1">
+                    <form class="form-skin shadow">
+                        <fieldset>
+                            <legend>What did you do yesterday?</legend>
+                            <label>Title</label>
+                            <input type="text" placeholder="Type something…">
+                            <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
+                            <label>Description</label>
+                            <textarea rows="3"></textarea>
+                            <label class="checkbox">
+                                <input type="checkbox"> Finished
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>What will you do today?</legend>
+                            <label>Title</label>
+                            <input type="text" placeholder="Type something…">
+                            <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
+                            <label>Description</label>
+                            <textarea rows="3"></textarea>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Do you have any blockers?</legend>
+                            <label>Title</label>
+                            <input type="text" placeholder="Type something…">
+                            <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
+                            <label>Description</label>
+                            <textarea rows="3"></textarea>
+                        </fieldset>
+
+                        <fieldset>
+                            <button type="submit" class="btn btn-flat btn-blue no-radius">Submit</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<% include sidebar-notifications %>
 
 <% include footer %>
+
 

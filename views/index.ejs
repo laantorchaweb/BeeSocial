@@ -1,11 +1,8 @@
 <% include header %>
 
-  <header class="page-header">
-      <h1><%= title %> <small>The Social Net at Work</small></h1>
-  </header>
-
-  <div class="row">
-      <form method="post" action="/login" class="form-horizontal">
+  <div class="container hero-unit">
+      <form method="post" action="/login" class="form-horizontal form-skin">
+        <legend>Login</legend>
         <div class="control-group">
           <label class="control-label" for="inputEmail">Email</label>
           <div class="controls">
@@ -23,7 +20,7 @@
             <label class="checkbox">
               <input type="checkbox"> Remember me
             </label>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-flat btn-blue no-radius">Sign in</button>
             <p></p>
             <p class="help-block">If you don't have an account you can <a href="/register">register here</a></p>
           </div>
