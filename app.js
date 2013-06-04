@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/:id', routes.home);
-app.get('/inbox/:id', routes.inbox);
+app.get('/inbox/', routes.inbox);
 
 app.post('/login', routes.login);
 app.post('/register', routes.register);
