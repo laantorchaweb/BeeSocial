@@ -7,9 +7,12 @@ var express = require('express'),
     routes = require('./routes'),
     user = require('./routes/user'),
     http = require('http'),
+    sanitize = require('validator').sanitize,
     path = require('path');
 
 var app = express();
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -22,7 +25,6 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
@@ -31,11 +33,26 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users/:id', routes.home);
-app.get('/register', user.register);
+app.get('/:id', routes.home);
+app.get('/inbox/:id', routes.inbox);
 
 app.post('/login', routes.login);
 app.post('/register', routes.register);
-http.createServer(app).listen(app.get('port'), function(){
+
+io.sockets.on('connection', function (socket) {
+  socket.on('msg', function (data) {
+
+    var safeData = {
+        name: sanitize(data["name"]).escape(),
+        msg: sanitize(data["msg"]).escape()
+    }
+
+    io.sockets.emit('new', safeData);
+
+  });
+});
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+

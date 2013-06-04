@@ -1,31 +1,8 @@
 <aside class="sidebar sidebar-right">
-    <div class="widget">
-        <header class="">
-            <h3 class="light">users involved in the project</h3>
-        </header>
-        <article class="widget-content">
-            <ul class="unstyled user-list clearfix">
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-                <li><img src="/img/user-small.png"></li>
-            </ul>
-        </article>
-    </div>
 
     <div class="widget bg-color dark-grey">
         <header>
-            <h3>projects</h3>
+            <h3>my projects</h3>
         </header>
         <article class="widget-content">
             <ul class="unstyled list">
@@ -67,5 +44,37 @@
             </ul>
         </article>
     </div>
+    <div class="widget">
+        <header class="">
+            <h3 class="light">users involved in Current Project</h3>
+        </header>
+        <article class="widget-content">
+            <ul class="unstyled user-list clearfix">
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+                <li><img src="/img/user-small.png"></li>
+            </ul>
+        </article>
+    </div>
 
 </aside>
+<div class="chat-module widget bg-color blue">
+  <div id="messages"></div>
+  <div class="nic">
+    <input id="name" name="name" type="hidden" value="<%= user.name.first %>"/>
+  </div>
+  <textarea id="message"></textarea>
+  <input id="send" type="submit" value="Send" class="btn btn-flat no-radius"/>
+</div>
+

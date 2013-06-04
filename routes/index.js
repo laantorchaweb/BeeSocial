@@ -21,7 +21,7 @@ exports.register = function(req, res) {
     }
 
     Account.register(email, password, firstName, lastName);
-    res.send(200);
+    res.redirect('/');
 }
 
 exports.login = function(req, res){
@@ -41,7 +41,7 @@ exports.login = function(req, res){
     console.log('login was successful');
     req.session.loggedIn  = true;
     req.session.accountId = doc._id;
-    res.redirect('/users/' + req.session.accountId);
+    res.redirect('/' + req.session.accountId);
   });
 
 };
@@ -50,15 +50,42 @@ exports.home = function(req, res) {
   var id = req.params.id;
 
   if ( req.session.loggedIn ) {
+
     Account.findById(id, function(doc) {
-        console.log('dochome', doc)
+
         res.render('home', {
           title: 'BeeSocial',
           user: doc
         });
-    })
+    });
+
+  } else if( id === 'register' ) {
+
+      res.render('register', {title: 'register'});
+
   } else {
     res.send(401);
   }
 
+}
+
+exports.inbox = function(req, res) {
+    var id = req.params.id;
+
+  var id = req.params.id;
+
+  if ( req.session.loggedIn ) {
+
+    Account.findById(id, function(doc) {
+
+        res.render('inbox', {
+          title: 'BeeSocial',
+          user: doc
+        });
+
+    });
+
+  } else {
+    res.send(401);
+  }
 }

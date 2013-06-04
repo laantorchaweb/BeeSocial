@@ -7,9 +7,11 @@
   },
   "dependencies": {
     "express": "3.2.4",
+    "socket.io": "*",
     "ejs": "*",
     "stylus": "*",
     "mongoose": "*",
+    "validator": "*",
     "crypto": "*"
   }
 }

@@ -3,19 +3,19 @@
     <h3 class="sidebar-header light">Navigation</h3>
     <ul class="navigation-list unstyled">
         <li>
-          <a href="/users/<%= user.id %>">
+          <a href="/<%= user.id %>">
             <i class="icon-desktop"></i>
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="/users/tasks">
+          <a href="/tasks">
             <i class="icon-check"></i>
             <span>Tasks</span>
           </a>
         </li>
         <li>
-          <a href="/users/inbox">
+          <a href="/inbox/<%= user.id %>">
             <i class="icon-comment"></i>
             <span>Inbox</span>
           </a>

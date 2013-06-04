@@ -6,7 +6,7 @@
     <header class="content-header">
         <h1 class="light no-margin"><%= user.name.first %> <%= user.name.last %></h1>
     </header>
-<section class="bordered">
+    <section class="bordered">
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span12">
@@ -19,10 +19,10 @@
                         <fieldset>
                             <legend>What did you do yesterday?</legend>
                             <label>Title</label>
-                            <input type="text" placeholder="Type something…">
+                            <input type="text" placeholder="Type something…" class="input-xxlarge">
                             <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
                             <label>Description</label>
-                            <textarea rows="3"></textarea>
+                            <textarea rows="3" class="input-xxlarge"></textarea>
                             <label class="checkbox">
                                 <input type="checkbox"> Finished
                             </label>
@@ -31,19 +31,19 @@
                         <fieldset>
                             <legend>What will you do today?</legend>
                             <label>Title</label>
-                            <input type="text" placeholder="Type something…">
+                            <input type="text" placeholder="Type something…" class="input-xxlarge">
                             <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
                             <label>Description</label>
-                            <textarea rows="3"></textarea>
+                            <textarea rows="3" class="input-xxlarge"></textarea>
                         </fieldset>
 
                         <fieldset>
                             <legend>Do you have any blockers?</legend>
                             <label>Title</label>
-                            <input type="text" placeholder="Type something…">
+                            <input type="text" placeholder="Type something…" class="input-xxlarge">
                             <span class="help-block">Put some descriptive title for your activites (could be a jira ticket).</span>
                             <label>Description</label>
-                            <textarea rows="3"></textarea>
+                            <textarea rows="3" class="input-xxlarge"></textarea>
                         </fieldset>
 
                         <fieldset>
@@ -59,5 +59,3 @@
 <% include sidebar-notifications %>
 
 <% include footer %>
-
-
