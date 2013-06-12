@@ -44,6 +44,7 @@ module.exports = function(mongoose) {
     shaSum.update(password);
 
     console.log('Registering ' + email);
+
     var user = new Account({
       email: email,
       name: {

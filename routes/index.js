@@ -41,7 +41,7 @@ exports.login = function(req, res){
     console.log('login was successful');
     req.session.loggedIn  = true;
     req.session.accountId = doc._id;
-    console.log(doc)
+
     res.redirect('/' + doc.username);
   });
 
@@ -53,12 +53,13 @@ exports.home = function(req, res) {
   if ( req.session.loggedIn ) {
 
     Account.findByUsername({username: url}, function(doc) {
-        console.log("document: ", doc);
+
         res.render('home', {
           title: 'BeeSocial',
           user: doc
         });
 
+        var socket = require('./socket');
     });
 
   } else if( url === 'register' ) {

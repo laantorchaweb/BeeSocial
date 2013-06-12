@@ -7,12 +7,11 @@ var express = require('express'),
     routes = require('./routes'),
     user = require('./routes/user'),
     http = require('http'),
-    sanitize = require('validator').sanitize,
     path = require('path');
 
-var app = express();
+var app    = express();
 var server = http.createServer(app);
-var io = require('socket.io').listen(server);
+global.io     = require('socket.io').listen(server);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -34,23 +33,13 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/:id', routes.home);
-app.get('/inbox/', routes.inbox);
+app.get('/:username/inbox/', routes.inbox);
 
 app.post('/login', routes.login);
 app.post('/register', routes.register);
 
-io.sockets.on('connection', function (socket) {
-  socket.on('msg', function (data) {
 
-    var safeData = {
-        name: sanitize(data["name"]).escape(),
-        msg: sanitize(data["msg"]).escape()
-    }
 
-    io.sockets.emit('new', safeData);
-
-  });
-});
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
