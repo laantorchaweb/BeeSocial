@@ -37,7 +37,6 @@
     //Sends a message to the server,
     //then clears it from the textarea
     send : function() {
-        console.log( $('#message').val())
       this.socket.emit('msg', {
         name: $('#name').val(),
         msg: $('#message').val()
@@ -47,6 +46,6 @@
     }
   };
 
-  Chat.initialize('http://10.3.2.10/');
+  Chat.initialize('http://localhost/');
 
 })(jQuery, this)

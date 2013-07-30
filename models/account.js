@@ -54,6 +54,7 @@ module.exports = function(mongoose) {
       username: firstName.toLowerCase() + '.' + lastName.toLowerCase(),
       password: shaSum.digest('hex')
     });
+
     user.save(registerCallback);
     console.log('Save command was sent');
   };

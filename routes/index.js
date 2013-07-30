@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Account = require('../models/account')(mongoose);
+var Account  = require('../models/account')(mongoose);
 
 mongoose.connect('mongodb://localhost/BeeSocial');
 
@@ -50,7 +50,7 @@ exports.login = function(req, res){
 exports.home = function(req, res) {
   var url = req.params.id;
 
-  if ( req.session.loggedIn ) {
+  if ( req.session.loggedIn && url !== 'register') {
 
     Account.findByUsername({username: url}, function(doc) {
 
@@ -62,12 +62,12 @@ exports.home = function(req, res) {
         var socket = require('./socket');
     });
 
-  } else if( url === 'register' ) {
+  } else if( !req.session.loggedIn && url === 'register' ) {
 
       res.render('register', {title: 'register'});
 
   } else {
-    res.send(401);
+    res.redirect('/');
   }
 
 }

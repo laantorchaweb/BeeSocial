@@ -11,7 +11,7 @@ var express = require('express'),
 
 var app    = express();
 var server = http.createServer(app);
-global.io     = require('socket.io').listen(server);
+global.io  = require('socket.io').listen(server);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -37,9 +37,6 @@ app.get('/:username/inbox/', routes.inbox);
 
 app.post('/login', routes.login);
 app.post('/register', routes.register);
-
-
-
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
