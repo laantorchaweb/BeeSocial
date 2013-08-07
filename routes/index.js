@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Account  = require('../models/account')(mongoose);
+var mongoose = require('mongoose'),
+    account  = require('../models/account')(mongoose);
 
 mongoose.connect('mongodb://localhost/BeeSocial');
 
@@ -20,8 +20,16 @@ exports.register = function(req, res) {
       return;
     }
 
-    Account.register(email, password, firstName, lastName);
-    res.redirect('/');
+    account.register(email, password, firstName, lastName, function(err) {
+
+      if (err) {
+        return console.log(err);
+      }
+
+      console.log('Account was created');
+      res.redirect('/');
+
+    });
 }
 
 exports.login = function(req, res){
@@ -33,11 +41,13 @@ exports.login = function(req, res){
     return;
   }
 
-  Account.login(email, password, function(doc) {
+  account.login(email, password, function(doc) {
+
     if ( !doc ) {
       res.send(401);
       return;
     }
+
     console.log('login was successful');
 
     req.session.loggedIn  = true;
@@ -54,14 +64,14 @@ exports.home = function(req, res) {
 
   if ( req.session.loggedIn && url !== 'register') {
 
-    Account.findByUsername({username: url}, function(doc) {
+    account.findByUsername({username: url}, function(doc) {
+        var socket = require('./socket');
 
         res.render('home', {
           title: 'BeeSocial',
           user: doc
         });
 
-        var socket = require('./socket');
     });
 
   } else if( !req.session.loggedIn && url === 'register' ) {
@@ -69,7 +79,9 @@ exports.home = function(req, res) {
       res.render('register', {title: 'register'});
 
   } else {
+
     res.redirect('/');
+
   }
 
 }
@@ -78,7 +90,7 @@ exports.inbox = function(req, res) {
 
   if ( req.session.loggedIn ) {
 
-    Account.findById(req.session.accountId, function(doc) {
+    account.findById(req.session.accountId, function(doc) {
 
         res.render('inbox', {
           title: 'BeeSocial',
@@ -88,6 +100,8 @@ exports.inbox = function(req, res) {
     });
 
   } else {
+
     res.send(401);
+
   }
 }

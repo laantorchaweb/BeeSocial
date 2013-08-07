@@ -19,33 +19,26 @@ module.exports = function(mongoose) {
       biography: { type: String }
   });
 
-  var Account = mongoose.model('Account', userSchema);
-
-  var registerCallback = function(err) {
-    if (err) {
-      return console.log(err);
-    };
-    return console.log('Account was created');
-  };
+  var account = mongoose.model('Account', userSchema);
 
   var login = function(email, password, callback) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
 
-    Account.findOne({email:email,password:shaSum.digest('hex')},function(err,doc){
+    account.findOne({email:email,password:shaSum.digest('hex')},function(err,doc){
       console.log('doc ', doc)
       callback(doc);
     });
 
   };
 
- var register = function(email, password, firstName, lastName) {
+ var register = function(email, password, firstName, lastName, callback) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
 
     console.log('Registering ' + email);
 
-    var user = new Account({
+    var user = new account({
       email: email,
       name: {
         first: firstName,
@@ -55,13 +48,13 @@ module.exports = function(mongoose) {
       password: shaSum.digest('hex')
     });
 
-    user.save(registerCallback);
+    user.save(callback);
     console.log('Save command was sent');
   };
 
   var findById = function(id, callback) {
 
-    Account.findOne({_id:id}, function(err,doc) {
+    account.findOne({_id:id}, function(err,doc) {
       callback(doc);
     });
 
@@ -69,7 +62,7 @@ module.exports = function(mongoose) {
 
   var findByUsername = function(id, callback) {
 
-    Account.findOne({username: id.username}, function(err,doc) {
+    account.findOne({username: id.username}, function(err,doc) {
       callback(doc);
     });
 
@@ -80,6 +73,6 @@ module.exports = function(mongoose) {
     register: register,
     findById: findById,
     findByUsername: findByUsername,
-    Account: Account
+    account: account
   }
 }
