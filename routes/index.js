@@ -28,7 +28,7 @@ exports.login = function(req, res){
     var email    = req.body.email,
         password = req.body.password;
 
-  if ( null == email || email.length < 1 || null == password || password.length < 1 ) {
+  if ( !email || !password ) {
     res.send(400);
     return;
   }
