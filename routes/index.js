@@ -39,10 +39,12 @@ exports.login = function(req, res){
       return;
     }
     console.log('login was successful');
+
     req.session.loggedIn  = true;
     req.session.accountId = doc._id;
 
     res.redirect('/' + doc.username);
+
   });
 
 };
