@@ -48,4 +48,20 @@
 
   Chat.initialize('http://localhost/');
 
-})(jQuery, this)
+  $('#register-form').on('submit', function(e) {
+      e.preventDefault();
+      var data = $(this).serialize();
+
+      $.ajax({
+        url: '/register',
+        type: 'POST',
+        data: data,
+        success: function(data) {
+            console.log(data);
+            window.location.href = "/";
+        }
+      });
+
+  });
+
+})(jQuery, this);

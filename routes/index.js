@@ -13,10 +13,21 @@ exports.register = function(req, res) {
     var firstName = req.param('firstName', ''),
         lastName  = req.param('lastName', ''),
         email     = req.param('email', null),
-        password  = req.param('password', null);
+        password  = req.param('password', null),
+        is_ajax   = req.xhr;
 
-    if ( null == email || email.length < 1 || null == password || password.length < 1 ) {
-      res.send(400);
+    if ( !firstName || !lastName || !email || !password ) {
+
+      if( is_ajax ) {
+
+        res.json(400, { message: 'failed' });
+
+      } else {
+
+        res.send(400);
+
+      }
+
       return;
     }
 
@@ -30,7 +41,7 @@ exports.register = function(req, res) {
       res.redirect('/');
 
     });
-}
+};
 
 exports.login = function(req, res){
     var email    = req.body.email,
@@ -84,7 +95,7 @@ exports.home = function(req, res) {
 
   }
 
-}
+};
 
 exports.inbox = function(req, res) {
 
